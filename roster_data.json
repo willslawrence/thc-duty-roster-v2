@@ -1,6 +1,6 @@
 {
   "year": 2026,
-  "updated": "2026-03-14T14:59:05.894514+03:00",
+  "updated": "2026-03-14T16:01:18.602789+03:00",
   "source": "fleetplan-api",
   "pilots": [
     {
@@ -77,6 +77,10 @@
         {
           "type": "TRAVEL",
           "date": "2026-03-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-03-15"
         },
         {
           "type": "DUTY",
@@ -626,6 +630,10 @@
         {
           "type": "TRAVEL",
           "date": "2026-03-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-03-16"
         },
         {
           "type": "DUTY",
@@ -1219,6 +1227,10 @@
         {
           "type": "TRAVEL",
           "date": "2026-03-15"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-03-17"
         },
         {
           "type": "DUTY",
