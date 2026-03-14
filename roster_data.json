@@ -1,36 +1,99 @@
 {
   "year": 2026,
-  "updated": "2026-03-14T12:24:51.076669+03:00",
-  "source": "fleetplan",
+  "updated": "2026-03-14T14:59:05.894514+03:00",
+  "source": "fleetplan-api",
   "pilots": [
     {
       "name": "Marius Hertz",
-      "fullName": "Marius Hertz",
+      "fullName": "Hertz, Marius",
       "isManagement": false,
       "rotations": [
         {
+          "start": "2026-01-01",
+          "end": "2026-01-29",
+          "status": "ON"
+        },
+        {
           "start": "2026-01-30",
-          "end": "2026-03-12",
+          "end": "2026-01-30",
           "status": "OFF"
         },
         {
           "start": "2026-03-13",
-          "end": "2026-03-31",
+          "end": "2026-04-23",
           "status": "ON"
+        },
+        {
+          "start": "2026-04-24",
+          "end": "2026-10-09",
+          "status": "OFF"
         }
       ],
       "events": [
         {
           "type": "TRAVEL",
+          "date": "2025-12-27"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-01"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-06"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-10"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-15"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-17"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-30"
+        },
+        {
+          "type": "TRAVEL",
           "date": "2026-03-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-04-23"
         }
       ]
     },
     {
       "name": "Dan Munteanu",
-      "fullName": "Dan Cristian Munteanu",
+      "fullName": "Munteanu, Dan Cristian",
       "isManagement": false,
       "rotations": [
+        {
+          "start": "2025-12-19",
+          "end": "2025-12-19",
+          "status": "OFF"
+        },
         {
           "start": "2026-01-31",
           "end": "2026-03-19",
@@ -38,11 +101,19 @@
         },
         {
           "start": "2026-03-20",
-          "end": "2026-04-23",
+          "end": "2026-11-20",
           "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-30"
+        },
         {
           "type": "DUTY",
           "date": "2026-02-10"
@@ -110,26 +181,56 @@
         {
           "type": "TRAVEL",
           "date": "2026-03-20"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-04-23"
         }
       ]
     },
     {
       "name": "David Schicht",
-      "fullName": "David Peter Schicht",
+      "fullName": "Schicht, David  Peter",
       "isManagement": false,
       "rotations": [
         {
-          "start": "2026-02-01",
+          "start": "2025-12-16",
+          "end": "2025-12-16",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-01-23",
           "end": "2026-03-09",
           "status": "ON"
         },
         {
           "start": "2026-03-10",
-          "end": "2026-04-20",
+          "end": "2026-11-17",
           "status": "OFF"
+        },
+        {
+          "start": "2026-12-29",
+          "end": "2026-12-29",
+          "status": "ON"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-30"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-31"
+        },
         {
           "type": "DUTY",
           "date": "2026-02-01"
@@ -172,6 +273,14 @@
         },
         {
           "type": "TRAVEL",
+          "date": "2026-02-26"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-02-28"
+        },
+        {
+          "type": "TRAVEL",
           "date": "2026-03-02"
         },
         {
@@ -189,63 +298,166 @@
         {
           "type": "DUTY",
           "date": "2026-03-09"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-12-29"
         }
       ]
     },
     {
       "name": "Kevin Allen",
-      "fullName": "Kevin Allen",
+      "fullName": "Allen, Kevin",
       "isManagement": false,
       "rotations": [
         {
+          "start": "2025-12-31",
+          "end": "2026-01-26",
+          "status": "ON"
+        },
+        {
           "start": "2026-01-27",
-          "end": "2026-03-09",
+          "end": "2026-01-27",
           "status": "OFF"
         },
         {
           "start": "2026-03-10",
           "end": "2026-03-31",
           "status": "ON"
-        }
-      ],
-      "events": [
-        {
-          "type": "TRAVEL",
-          "date": "2026-03-09"
         },
         {
-          "type": "DUTY",
-          "date": "2026-03-15"
+          "start": "2026-04-21",
+          "end": "2026-07-14",
+          "status": "OFF"
         },
         {
-          "type": "DUTY",
-          "date": "2026-03-24"
-        }
-      ]
-    },
-    {
-      "name": "Julio Bonet",
-      "fullName": "Julio Bonet",
-      "isManagement": false,
-      "rotations": [
-        {
-          "start": "2026-02-01",
-          "end": "2026-02-28",
+          "start": "2026-08-25",
+          "end": "2026-08-25",
           "status": "ON"
         },
         {
-          "start": "2026-03-02",
-          "end": "2026-04-12",
+          "start": "2026-10-06",
+          "end": "2026-12-29",
           "status": "OFF"
         }
       ],
       "events": [
         {
           "type": "TRAVEL",
-          "date": "2026-02-01"
+          "date": "2025-12-14"
         },
         {
           "type": "DUTY",
+          "date": "2026-01-05"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-08"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-14"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-22"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-03-09"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-03-16"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-03-24"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-08-25"
+        }
+      ]
+    },
+    {
+      "name": "Julio Bonet",
+      "fullName": "Bonet, Julio",
+      "isManagement": false,
+      "rotations": [
+        {
+          "start": "2025-12-08",
+          "end": "2025-12-08",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-01-19",
+          "end": "2026-02-27",
+          "status": "ON"
+        },
+        {
+          "start": "2026-03-02",
+          "end": "2026-03-02",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-05-24",
+          "end": "2026-05-24",
+          "status": "ON"
+        },
+        {
+          "start": "2026-05-25",
+          "end": "2026-11-09",
+          "status": "OFF"
+        }
+      ],
+      "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-25"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-25"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-26"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-27"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-28"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-30"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-31"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-02-01"
+        },
+        {
+          "type": "TRAVEL",
           "date": "2026-02-01"
         },
         {
@@ -275,26 +487,142 @@
         {
           "type": "TRAVEL",
           "date": "2026-03-01"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-04-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-05-24"
         }
       ]
     },
     {
       "name": "Matt O'Brien",
-      "fullName": "Matthew John OBrien",
+      "fullName": "OBrien, Matthew John",
       "isManagement": false,
       "rotations": [
         {
+          "start": "2026-01-01",
+          "end": "2026-01-26",
+          "status": "ON"
+        },
+        {
           "start": "2026-01-29",
-          "end": "2026-03-11",
+          "end": "2026-01-29",
           "status": "OFF"
         },
         {
           "start": "2026-03-12",
           "end": "2026-03-31",
           "status": "ON"
+        },
+        {
+          "start": "2026-04-23",
+          "end": "2026-10-08",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-12-30",
+          "end": "2026-12-30",
+          "status": "ON"
+        },
+        {
+          "start": "2026-12-31",
+          "end": "2026-12-31",
+          "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2025-12-18"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-01"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-02"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-03"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-04"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-05"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-06"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-07"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-08"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-09"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-10"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-13"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-14"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-15"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-16"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-17"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-22"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-26"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-28"
+        },
         {
           "type": "TRAVEL",
           "date": "2026-03-11"
@@ -302,31 +630,116 @@
         {
           "type": "DUTY",
           "date": "2026-03-26"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-12-30"
         }
       ]
     },
     {
       "name": "Nathan Piper",
-      "fullName": "Nathan Piper",
+      "fullName": "Piper, Nathan",
       "isManagement": false,
       "rotations": [
         {
+          "start": "2026-01-01",
+          "end": "2026-01-18",
+          "status": "ON"
+        },
+        {
           "start": "2026-01-19",
-          "end": "2026-02-17",
+          "end": "2026-01-19",
           "status": "OFF"
         },
         {
           "start": "2026-02-18",
-          "end": "2026-03-31",
+          "end": "2026-02-28",
           "status": "ON"
         },
         {
           "start": "2026-04-01",
-          "end": "2026-05-12",
+          "end": "2026-12-09",
           "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "DUTY",
+          "date": "2026-01-01"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-02"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-03"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-04"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-05"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-06"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-07"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-08"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-09"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-10"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-13"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-14"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-15"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-16"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-17"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-19"
+        },
         {
           "type": "TRAVEL",
           "date": "2026-02-17"
@@ -347,21 +760,62 @@
     },
     {
       "name": "David Leipsig",
-      "fullName": "David Joshua Leipsig",
+      "fullName": "Leipsig, David  Joshua",
       "isManagement": false,
       "rotations": [
         {
-          "start": "2026-02-01",
+          "start": "2025-11-27",
+          "end": "2025-11-27",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-01-08",
           "end": "2026-02-18",
           "status": "ON"
         },
         {
           "start": "2026-02-19",
-          "end": "2026-04-01",
+          "end": "2026-10-29",
           "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-06"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-07"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-13"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-24"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-30"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-31"
+        },
         {
           "type": "DUTY",
           "date": "2026-02-01"
@@ -394,27 +848,40 @@
     },
     {
       "name": "Lisa Le Roux",
-      "fullName": "Lisa kate le Roux",
+      "fullName": "le Roux, Lisa  kate",
       "isManagement": false,
       "rotations": [
         {
-          "start": "2026-02-05",
+          "start": "2025-12-17",
+          "end": "2025-12-17",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-01-28",
           "end": "2026-03-10",
           "status": "ON"
         },
         {
           "start": "2026-03-11",
-          "end": "2026-04-21",
+          "end": "2026-11-18",
           "status": "OFF"
         }
       ],
       "events": [
         {
-          "type": "TRAVEL",
-          "date": "2026-02-05"
+          "type": "DUTY",
+          "date": "2026-01-28"
         },
         {
           "type": "DUTY",
+          "date": "2026-01-31"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-02-05"
+        },
+        {
+          "type": "TRAVEL",
           "date": "2026-02-05"
         },
         {
@@ -493,21 +960,111 @@
     },
     {
       "name": "Ivona Redlinska",
-      "fullName": "Iwona Redlinska",
+      "fullName": "Redlinska, Iwona",
       "isManagement": false,
       "rotations": [
         {
+          "start": "2026-01-01",
+          "end": "2026-01-18",
+          "status": "ON"
+        },
+        {
           "start": "2026-01-19",
-          "end": "2026-03-02",
+          "end": "2026-02-23",
           "status": "OFF"
         },
         {
           "start": "2026-03-03",
           "end": "2026-03-31",
           "status": "ON"
+        },
+        {
+          "start": "2026-04-14",
+          "end": "2026-12-30",
+          "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2025-11-30"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-01"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-02"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-03"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-04"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-05"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-06"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-07"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-08"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-09"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-10"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-13"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-14"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-15"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-16"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-17"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-19"
+        },
         {
           "type": "TRAVEL",
           "date": "2026-03-02"
@@ -528,21 +1085,125 @@
     },
     {
       "name": "Lindsay Pentz",
-      "fullName": "Lindsay Claire Wegner Pentz",
+      "fullName": "Pentz, Lindsay Claire Wegner",
       "isManagement": false,
       "rotations": [
         {
+          "start": "2025-12-31",
+          "end": "2026-01-20",
+          "status": "ON"
+        },
+        {
           "start": "2026-01-21",
-          "end": "2026-03-03",
+          "end": "2026-01-21",
           "status": "OFF"
         },
         {
           "start": "2026-03-09",
           "end": "2026-03-31",
           "status": "ON"
+        },
+        {
+          "start": "2026-04-15",
+          "end": "2026-09-30",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-12-22",
+          "end": "2026-12-22",
+          "status": "ON"
+        },
+        {
+          "start": "2026-12-23",
+          "end": "2026-12-23",
+          "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-01"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-02"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-03"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-04"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-05"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-06"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-07"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-08"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-09"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-10"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-11"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-12"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-13"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-14"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-15"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-16"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-17"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-18"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-20"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-21"
+        },
         {
           "type": "TRAVEL",
           "date": "2026-03-03"
@@ -558,26 +1219,55 @@
         {
           "type": "TRAVEL",
           "date": "2026-03-15"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-12-22"
         }
       ]
     },
     {
       "name": "Rohit Kaundinya",
-      "fullName": "Rohit Kaundinya",
+      "fullName": "Kaundinya, Rohit",
       "isManagement": false,
       "rotations": [
         {
-          "start": "2026-01-31",
+          "start": "2025-12-31",
+          "end": "2025-12-31",
+          "status": "OFF"
+        },
+        {
+          "start": "2026-01-21",
           "end": "2026-03-03",
           "status": "ON"
         },
         {
           "start": "2026-03-04",
-          "end": "2026-04-14",
+          "end": "2026-11-11",
           "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-20"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-21"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-21"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-22"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-25"
+        },
         {
           "type": "TRAVEL",
           "date": "2026-02-05"
@@ -628,32 +1318,93 @@
         },
         {
           "type": "TRAVEL",
+          "date": "2026-02-26"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-02-28"
+        },
+        {
+          "type": "TRAVEL",
           "date": "2026-03-02"
         }
       ]
     },
     {
       "name": "Stephan Mayer",
-      "fullName": "Stephan Mayer",
+      "fullName": "Mayer, Stephan",
       "isManagement": false,
       "rotations": [
         {
-          "start": "2026-02-01",
-          "end": "2026-02-13",
+          "start": "2026-01-01",
+          "end": "2026-02-12",
           "status": "ON"
         },
         {
           "start": "2026-02-14",
-          "end": "2026-03-20",
+          "end": "2026-02-14",
           "status": "OFF"
         },
         {
           "start": "2026-03-21",
-          "end": "2026-03-31",
+          "end": "2026-04-30",
           "status": "ON"
+        },
+        {
+          "start": "2026-05-02",
+          "end": "2026-10-19",
+          "status": "OFF"
         }
       ],
       "events": [
+        {
+          "type": "DUTY",
+          "date": "2026-01-01"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-02"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-03"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-04"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-17"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-19"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-20"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-21"
+        },
+        {
+          "type": "TRAVEL",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-29"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-30"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-01-31"
+        },
         {
           "type": "DUTY",
           "date": "2026-02-01"
@@ -665,12 +1416,16 @@
         {
           "type": "TRAVEL",
           "date": "2026-02-13"
+        },
+        {
+          "type": "DUTY",
+          "date": "2026-04-30"
         }
       ]
     },
     {
       "name": "Will Lawrence",
-      "fullName": "William Stewart Lawrence",
+      "fullName": "Will Lawrence",
       "isManagement": true,
       "rotations": [
         {
@@ -679,60 +1434,7 @@
           "status": "ON"
         }
       ],
-      "events": [
-        {
-          "type": "VACATION",
-          "date": "2026-01-28"
-        },
-        {
-          "type": "VACATION",
-          "date": "2026-01-29"
-        },
-        {
-          "type": "VACATION",
-          "date": "2026-01-30"
-        },
-        {
-          "type": "VACATION",
-          "date": "2026-01-31"
-        },
-        {
-          "type": "DUTY",
-          "date": "2026-02-01"
-        },
-        {
-          "type": "DUTY",
-          "date": "2026-02-02"
-        },
-        {
-          "type": "DUTY",
-          "date": "2026-02-05"
-        },
-        {
-          "type": "VACATION",
-          "date": "2026-02-09"
-        },
-        {
-          "type": "VACATION",
-          "date": "2026-02-10"
-        },
-        {
-          "type": "VACATION",
-          "date": "2026-02-11"
-        },
-        {
-          "type": "DUTY",
-          "date": "2026-02-19"
-        },
-        {
-          "type": "DUTY",
-          "date": "2026-03-01"
-        },
-        {
-          "type": "DUTY",
-          "date": "2026-03-02"
-        }
-      ]
+      "events": []
     },
     {
       "name": "Matthias Klemp",
