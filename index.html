@@ -251,8 +251,21 @@ function render() {
     popup.style.top = Math.max(8, Math.min(y, window.innerHeight - rect.height - 16)) + 'px';
   }
 
+  // Sort: management → line pilots → Survey → UAM at bottom
+  function pilotGroup(p) {
+    if (p.isManagement) return 0;
+    const q = PILOT_QUALS[p.name] || [];
+    const hasSurvey = q.includes('Survey');
+    const hasUAM = q.includes('UAM');
+    if (!hasSurvey && !hasUAM) return 1; // regular line pilot
+    if (hasSurvey && !hasUAM) return 2;  // Survey only
+    if (hasSurvey && hasUAM) return 3;   // Survey + UAM
+    return 4;                             // UAM only
+  }
+  const sortedPilots = [...ROSTER.pilots].sort((a, b) => pilotGroup(a) - pilotGroup(b));
+
   // Pilot rows
-  ROSTER.pilots.forEach((pilot, idx) => {
+  sortedPilots.forEach((pilot, idx) => {
     const mgmt = pilot.isManagement;
     const row = document.createElement('div');
     row.className = 'pilot-row' + (mgmt ? ' management' : '');
