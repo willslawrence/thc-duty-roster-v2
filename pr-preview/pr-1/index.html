@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>H125 Duty Roster V2 — The Helicopter Company</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',-apple-system,sans-serif;background:linear-gradient(135deg,#0a0a0a 0%,#1a1a2e 100%);color:#ddd;min-height:100vh}
+a{color:#7eb8ff}
+
+.header{padding:24px 28px 16px;border-bottom:1px solid rgba(255,255,255,0.08);display:flex;justify-content:space-between;align-items:flex-start}
+.header-left{flex:1}
+.header h1{font-size:1.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:linear-gradient(90deg,#2ecc71,#3498db);-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:2px}
+.header .subtitle{font-size:0.75rem;color:#888;letter-spacing:1px;text-transform:uppercase}
+.header .date{font-size:0.7rem;color:#555;margin-top:4px}
+.header .v2-badge{display:inline-block;background:rgba(52,152,219,0.3);color:#3498db;font-size:0.6rem;font-weight:700;padding:2px 6px;border-radius:3px;letter-spacing:1px;margin-left:8px;vertical-align:middle}
+
+.summary{display:flex;flex-direction:column;gap:6px;padding:0;min-width:180px;margin-left:24px}
+.summary-card{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;padding:4px 10px;display:flex;align-items:center;gap:8px}
+.summary-card h3{font-size:0.6rem;text-transform:uppercase;letter-spacing:1px;color:#888;margin-bottom:0}
+.summary-card .count{font-size:1.2rem;font-weight:700}
+.summary-card .count.on{color:#2ecc71}
+.summary-card .count.off{color:#e74c3c}
+.pilot-list{font-size:0.7rem;color:#aaa;margin-top:6px;line-height:1.6}
+
+.legend-bar{display:flex;gap:16px;padding:8px 28px 12px;font-size:0.7rem;color:#888;flex-wrap:wrap;align-items:center}
+.legend-item{display:flex;align-items:center;gap:5px}
+.legend-dot{width:12px;height:12px;border-radius:2px}
+
+.timeline-wrap{padding:0 28px 40px;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.timeline{position:relative;min-width:2400px}
+
+.pilot-row{display:flex;align-items:center;height:29px;border-bottom:1px solid rgba(255,255,255,0.04)}
+.pilot-row:hover{background:rgba(255,255,255,0.02)}
+.pilot-info{width:180px;min-width:180px;padding-right:12px;display:flex;align-items:center;gap:8px;z-index:2}
+.pilot-num{font-size:0.65rem;color:#555;font-weight:600;min-width:20px;text-align:right}
+.pilot-name{font-size:0.75rem;font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.pilot-name:hover{text-decoration:underline}
+.pilot-row.management .pilot-name{color:#f1c40f;font-weight:700}
+.pilot-row.management .pilot-num{color:#f1c40f}
+
+.bar-area{flex:1;position:relative;height:100%}
+
+.rot-block{position:absolute;top:4px;height:22px;border-radius:3px;cursor:default;overflow:hidden;display:flex;align-items:center;justify-content:space-between;padding:0 3px;font-size:7px;color:rgba(255,255,255,0.5)}
+.rot-block.on{background:rgba(46,204,113,0.35);border:1px solid rgba(46,204,113,0.5)}
+.rot-block.off{background:rgba(231,76,60,0.18);border:1px solid rgba(231,76,60,0.25)}
+.rot-block.mgmt-on{background:rgba(241,196,15,0.25);border:1px solid rgba(241,196,15,0.45)}
+
+.event-marker{position:absolute;top:6px;height:18px;width:3px;border-radius:1px;z-index:3;pointer-events:none}
+.event-marker.duty{background:rgba(52,152,219,0.8)}
+.event-marker.travel{background:rgba(155,89,182,0.7)}
+.event-marker.vacation{background:rgba(243,156,18,0.8)}
+
+.today-line{position:absolute;top:0;bottom:0;width:2px;background:#f1c40f;z-index:10;pointer-events:none}
+.today-label{position:absolute;top:-22px;transform:translateX(-50%);font-size:0.6rem;color:#f1c40f;font-weight:600;white-space:nowrap}
+
+.month-grid-line{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.06);z-index:1}
+
+.popup-overlay{position:fixed;top:0;left:0;right:0;bottom:0;z-index:99}
+.popup{position:fixed;z-index:100;background:#1e1e2e;border:1px solid rgba(255,255,255,0.15);border-radius:8px;padding:14px 18px;box-shadow:0 8px 32px rgba(0,0,0,0.6);font-size:0.8rem;color:#ddd;max-width:320px;min-width:180px}
+.popup .popup-title{font-weight:700;font-size:0.85rem;margin-bottom:8px;color:#fff}
+.popup .popup-status{display:inline-block;padding:2px 8px;border-radius:4px;font-weight:600;font-size:0.75rem;margin-bottom:4px}
+.popup .popup-status.on{background:rgba(46,204,113,0.3);color:#2ecc71}
+.popup .popup-status.off{background:rgba(231,76,60,0.3);color:#e74c3c}
+.popup .popup-field{margin-top:8px}
+.popup .popup-field-label{font-size:0.65rem;text-transform:uppercase;letter-spacing:0.5px;color:#888;margin-bottom:2px}
+.popup .popup-field-value{color:#ddd;font-size:0.78rem;line-height:1.5}
+
+.loading{text-align:center;padding:60px;color:#888;font-size:1rem}
+
+::-webkit-scrollbar{height:6px;width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:#333;border-radius:3px}
+
+@media(max-width:768px){
+  .header{padding:16px;flex-direction:column}
+  .summary{margin-left:0;margin-top:12px}
+  .legend-bar{padding:8px 16px}
+  .timeline-wrap{padding:0 16px 24px}
+  .pilot-info{width:120px;min-width:120px}
+  .pilot-name{font-size:0.65rem}
+  .timeline{min-width:1800px}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <h1>H125 Duty Roster <span class="v2-badge">V2 • FLEETPLAN</span></h1>
+    <a href="https://willslawrence.github.io/thc-fleet-map-v2/" style="font-size:0.7rem;color:#7eb8ff;text-decoration:none;letter-spacing:1px;">→ Fleet Map</a>
+    <div class="subtitle">The Helicopter Company</div>
+    <div class="date" id="headerDate"></div>
+    <div id="sourceNote" style="font-size:0.6rem;color:#666;margin-top:2px;font-style:italic;"></div>
+  </div>
+  <div class="summary" id="summary"></div>
+</div>
+
+<div class="legend-bar">
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(46,204,113,0.5)"></div> ON Rotation</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(231,76,60,0.3)"></div> OFF Rotation</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(241,196,15,0.4)"></div> Management</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(52,152,219,0.8);width:4px"></div> Duty</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(155,89,182,0.7);width:4px"></div> Travel</div>
+  <div class="legend-item"><div class="legend-dot" style="background:rgba(243,156,18,0.8);width:4px"></div> Vacation</div>
+  <div class="legend-item"><div style="width:2px;height:12px;background:#f1c40f"></div> Selected Date</div>
+</div>
+
+<div class="timeline-wrap" id="timelineWrap">
+  <div class="timeline" id="timeline"><div class="loading">Loading roster data...</div></div>
+</div>
+
+<script>
+const PILOT_DATA = {
+  "Will Lawrence": { qualifications: ["Banner", "ELO 1", "ELO 2", "Film"], roles: ["Check Pilot", "UAM TRAINING", "REMS"], baseMonth: "October" },
+  "Marius Hertz": { qualifications: ["Survey", "ELO 1", "ELO 2"], roles: ["PAX"], baseMonth: "November" },
+  "Dan Munteanu": { qualifications: ["ELO 1", "ELO 2", "Survey"], roles: ["PAX"], baseMonth: "May" },
+  "David Schicht": { qualifications: ["ELO 1", "ELO 2", "Survey"], roles: ["REMS", "PAX"], baseMonth: "September" },
+  "Kevin Allen": { qualifications: ["ELO 1", "ELO 2", "Survey"], roles: ["REMS", "PAX"], baseMonth: "September" },
+  "Julio Bonet": { qualifications: ["ELO 1", "ELO 2", "Film", "Survey"], roles: ["PAX"], baseMonth: "August" },
+  "Matt O'Brien": { qualifications: ["ELO 1", "ELO 2", "Film"], roles: ["REMS"], baseMonth: "May" },
+  "Nathan Piper": { qualifications: ["ELO 1", "ELO 2"], roles: ["REMS"], baseMonth: "July" },
+  "David Leipsig": { qualifications: [], roles: ["REMS", "PAX"], baseMonth: "September" },
+  "Lisa Le Roux": { qualifications: ["ELO 1", "Film"], roles: ["REMS"], baseMonth: "November" },
+  "Ivona Redlinska": { qualifications: ["ELO 1", "Film"], roles: ["REMS"], baseMonth: "April" },
+  "Lindsay Pentz": { qualifications: ["Film"], roles: ["REMS"], baseMonth: "November" },
+  "Rohit Kaundinya": { qualifications: ["ELO 1", "ELO 2", "Survey"], roles: ["PAX"], baseMonth: "May" },
+  "Stephan Mayer": { qualifications: ["Film"], roles: ["Check Pilot", "UAM TRAINING", "REMS"], baseMonth: "December" },
+  "Matthias Klemp": { qualifications: [], roles: ["REMS", "DFO135"], baseMonth: "January" }
+};
+
+const PILOT_QUALS = {
+  "Will Lawrence":["UAM"],"Nathan Piper":["UAM"],"David Leipsig":["UAM"],"Lisa Le Roux":["UAM"],
+  "Ivona Redlinska":["UAM"],"Lindsay Pentz":["UAM"],"Stephan Mayer":["UAM"],
+  "Rohit Kaundinya":["UAM","Survey"],"David Schicht":["UAM","Survey"],"Kevin Allen":["UAM","Survey"],
+  "Marius Hertz":["Survey"],"Dan Munteanu":["Survey"],"Julio Bonet":["Survey"],
+  "Matt O'Brien":["Survey"],"Matthias Klemp":[]
+};
+
+const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+
+let ROSTER = null;
+let selectedDate = new Date();
+selectedDate.setHours(0,0,0,0);
+
+async function loadData() {
+  try {
+    const resp = await fetch('roster_data.json?t=' + Date.now());
+    ROSTER = await resp.json();
+    render();
+  } catch(e) {
+    document.getElementById('timeline').innerHTML = '<div class="loading">Failed to load roster data: ' + e.message + '</div>';
+  }
+}
+
+function render() {
+  const YEAR = ROSTER.year;
+  const yearStart = new Date(YEAR, 0, 1);
+  const yearEnd = new Date(YEAR, 11, 31);
+  const totalDays = (yearEnd - yearStart) / 864e5 + 1;
+  const today = new Date();
+  const todayDay = Math.round((today - yearStart) / 864e5);
+
+  function dayOfYear(dateStr) { return Math.round((new Date(dateStr) - yearStart) / 864e5); }
+  function pct(day) { return (day / totalDays) * 100; }
+  function fmtD(d) { return d.getDate() + ' ' + months[d.getMonth()]; }
+
+  // Update header
+  const updatedAt = new Date(ROSTER.updated);
+  const updStr = updatedAt.toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  document.getElementById('headerDate').textContent = 'Today: ' + new Date().toLocaleDateString('en-GB', {day:'numeric',month:'short',year:'numeric'});
+  document.getElementById('sourceNote').textContent = 'Source: Fleetplan (auto-synced) • Last updated: ' + updStr;
+
+  function statusOnDate(pilot, date) {
+    const ds = date.toISOString().slice(0,10);
+    for (const r of pilot.rotations) {
+      if (ds >= r.start && ds <= r.end) return r.status;
+    }
+    return 'UNKNOWN';
+  }
+
+  function updateSummary(date) {
+    const linePilots = ROSTER.pilots.filter(p => !p.isManagement);
+    const onPilots = linePilots.filter(p => statusOnDate(p, date) === 'ON');
+    const offPilots = linePilots.filter(p => statusOnDate(p, date) === 'OFF');
+    const shortName = p => { const parts = p.name.split(' '); return parts[0]; };
+
+    document.getElementById('summary').innerHTML = `
+      <div class="summary-card"><h3>On Rotation</h3><div class="count on">${onPilots.length}</div><div class="pilot-list">${onPilots.map(p => shortName(p)).join(', ')}</div></div>
+      <div class="summary-card"><h3>Off Rotation</h3><div class="count off">${offPilots.length}</div><div class="pilot-list">${offPilots.map(p => shortName(p)).join(', ')}</div></div>
+    `;
+  }
+
+  updateSummary(selectedDate);
+
+  // Build timeline
+  const timeline = document.getElementById('timeline');
+  timeline.innerHTML = '';
+
+  // Month header row
+  let monthHTML = '<div style="display:flex;height:28px;align-items:center;border-bottom:1px solid rgba(255,255,255,0.1)">';
+  monthHTML += '<div style="width:180px;min-width:180px"></div><div class="bar-area" style="position:relative">';
+  for (let m = 0; m < 12; m++) {
+    const mStart = dayOfYear(YEAR + '-' + String(m+1).padStart(2,'0') + '-01');
+    const mEnd = m < 11 ? dayOfYear(YEAR + '-' + String(m+2).padStart(2,'0') + '-01') : totalDays;
+    if (m % 2 === 1) {
+      monthHTML += '<div style="position:absolute;top:0;bottom:0;left:' + pct(mStart) + '%;width:' + pct(mEnd-mStart) + '%;background:rgba(255,255,255,0.03);pointer-events:none"></div>';
+    }
+    monthHTML += '<span style="position:absolute;font-size:0.65rem;font-weight:600;color:#888;text-transform:uppercase;letter-spacing:1px;left:' + pct(mStart) + '%">' + months[m] + '</span>';
+    monthHTML += '<div class="month-grid-line" style="left:' + pct(mStart) + '%"></div>';
+  }
+  monthHTML += '<div class="today-line selected-line" style="left:' + pct(todayDay) + '%"><div class="today-label selected-label">TODAY</div></div>';
+  monthHTML += '</div></div>';
+  timeline.innerHTML = monthHTML;
+
+  // Click to move date
+  timeline.addEventListener('click', function(e) {
+    const barArea = e.target.closest('.bar-area');
+    if (!barArea) return;
+    const rect = barArea.getBoundingClientRect();
+    const xPct = (e.clientX - rect.left) / rect.width;
+    const clickedDay = Math.round(xPct * totalDays);
+    const clickedDate = new Date(YEAR, 0, 1);
+    clickedDate.setDate(clickedDate.getDate() + clickedDay);
+    if (clickedDate < yearStart || clickedDate > yearEnd) return;
+    selectedDate = clickedDate;
+    document.querySelectorAll('.selected-line').forEach(el => { el.style.left = pct(clickedDay) + '%'; });
+    document.querySelectorAll('.selected-label').forEach(el => {
+      const isToday = clickedDate.toDateString() === new Date().toDateString();
+      el.textContent = isToday ? 'TODAY' : fmtD(clickedDate);
+    });
+    updateSummary(selectedDate);
+  });
+
+  // Popup management
+  function dismissPopup() { document.querySelectorAll('.popup, .popup-overlay').forEach(el => el.remove()); }
+  function showPopup(x, y, html) {
+    dismissPopup();
+    const overlay = document.createElement('div');
+    overlay.className = 'popup-overlay';
+    overlay.addEventListener('click', dismissPopup);
+    document.body.appendChild(overlay);
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.innerHTML = html;
+    document.body.appendChild(popup);
+    const rect = popup.getBoundingClientRect();
+    popup.style.left = Math.max(8, Math.min(x, window.innerWidth - rect.width - 16)) + 'px';
+    popup.style.top = Math.max(8, Math.min(y, window.innerHeight - rect.height - 16)) + 'px';
+  }
+
+  // Sort: management → line pilots → Survey → UAM at bottom
+  function pilotGroup(p) {
+    if (p.isManagement) return 0;
+    const q = PILOT_QUALS[p.name] || [];
+    const hasSurvey = q.includes('Survey');
+    const hasUAM = q.includes('UAM');
+    if (!hasSurvey && !hasUAM) return 1; // regular line pilot
+    if (hasSurvey && !hasUAM) return 2;  // Survey only
+    if (hasSurvey && hasUAM) return 3;   // Survey + UAM
+    return 4;                             // UAM only
+  }
+  const sortedPilots = [...ROSTER.pilots].sort((a, b) => pilotGroup(a) - pilotGroup(b));
+
+  // Pilot rows
+  sortedPilots.forEach((pilot, idx) => {
+    const mgmt = pilot.isManagement;
+    const row = document.createElement('div');
+    row.className = 'pilot-row' + (mgmt ? ' management' : '');
+
+    const info = document.createElement('div');
+    info.className = 'pilot-info';
+    const numSpan = document.createElement('span');
+    numSpan.className = 'pilot-num';
+    numSpan.textContent = idx + 1;
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'pilot-name';
+    nameSpan.textContent = pilot.name;
+
+    nameSpan.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const data = PILOT_DATA[pilot.name];
+      const status = statusOnDate(pilot, new Date());
+      const statusClass = status === 'ON' ? 'on' : 'off';
+      let html = '<div class="popup-title">' + pilot.name + '</div>';
+      html += '<span class="popup-status ' + statusClass + '">' + status + '</span>';
+      if (pilot.fullName && pilot.fullName !== pilot.name) {
+        html += '<div class="popup-field"><div class="popup-field-label">Full Name</div><div class="popup-field-value">' + pilot.fullName + '</div></div>';
+      }
+      if (data) {
+        if (data.roles.length) html += '<div class="popup-field"><div class="popup-field-label">Roles</div><div class="popup-field-value">' + data.roles.join(', ') + '</div></div>';
+        if (data.qualifications.length) html += '<div class="popup-field"><div class="popup-field-label">Qualifications</div><div class="popup-field-value">' + data.qualifications.join(', ') + '</div></div>';
+        if (data.baseMonth) html += '<div class="popup-field"><div class="popup-field-label">Base Month</div><div class="popup-field-value">' + data.baseMonth + '</div></div>';
+      }
+      if (mgmt) html += '<div class="popup-field"><div class="popup-field-label">Type</div><div class="popup-field-value">Management (Always ON)</div></div>';
+
+      // Next rotation change
+      const todayStr = new Date().toISOString().slice(0,10);
+      const nextChange = pilot.rotations.find(r => r.start > todayStr);
+      if (nextChange) {
+        const d = new Date(nextChange.start);
+        html += '<div class="popup-field"><div class="popup-field-label">Next Change</div><div class="popup-field-value">' + nextChange.status + ' from ' + fmtD(d) + '</div></div>';
+      }
+
+      showPopup(e.clientX + 10, e.clientY - 10, html);
+    });
+
+    info.appendChild(numSpan);
+    info.appendChild(nameSpan);
+    row.appendChild(info);
+
+    const bar = document.createElement('div');
+    bar.className = 'bar-area';
+    bar.style.position = 'relative';
+
+    // Month backgrounds and grid lines
+    for (let m = 0; m < 12; m++) {
+      const mStart = dayOfYear(YEAR + '-' + String(m+1).padStart(2,'0') + '-01');
+      const mEnd = m < 11 ? dayOfYear(YEAR + '-' + String(m+2).padStart(2,'0') + '-01') : totalDays;
+      if (m % 2 === 1) {
+        const bg = document.createElement('div');
+        bg.style.cssText = 'position:absolute;top:0;bottom:0;left:' + pct(mStart) + '%;width:' + pct(mEnd-mStart) + '%;background:rgba(255,255,255,0.03);pointer-events:none;z-index:0';
+        bar.appendChild(bg);
+      }
+      const gl = document.createElement('div');
+      gl.className = 'month-grid-line';
+      gl.style.left = pct(mStart) + '%';
+      bar.appendChild(gl);
+    }
+
+    // Rotation blocks
+    pilot.rotations.forEach(r => {
+      const s = dayOfYear(r.start);
+      const e = dayOfYear(r.end);
+      const block = document.createElement('div');
+      block.className = 'rot-block ' + (mgmt ? 'mgmt-on' : (r.status === 'ON' ? 'on' : 'off'));
+      block.style.left = pct(s) + '%';
+      block.style.width = pct(e - s + 1) + '%';
+
+      const sDate = new Date(r.start);
+      const eDate = new Date(r.end);
+      const startLabel = document.createElement('span');
+      startLabel.textContent = fmtD(sDate);
+      startLabel.style.whiteSpace = 'nowrap';
+      const endLabel = document.createElement('span');
+      endLabel.textContent = fmtD(eDate);
+      endLabel.style.whiteSpace = 'nowrap';
+      block.appendChild(startLabel);
+      block.appendChild(endLabel);
+      bar.appendChild(block);
+    });
+
+    // Event markers (DUTY, TRAVEL, VACATION)
+    if (pilot.events) {
+      pilot.events.forEach(ev => {
+        const d = dayOfYear(ev.date);
+        const marker = document.createElement('div');
+        marker.className = 'event-marker ' + ev.type.toLowerCase();
+        marker.style.left = pct(d) + '%';
+        marker.title = ev.type + ': ' + ev.date;
+        bar.appendChild(marker);
+      });
+    }
+
+    // Today/selected line
+    const tl = document.createElement('div');
+    tl.className = 'today-line selected-line';
+    tl.style.left = pct(todayDay) + '%';
+    bar.appendChild(tl);
+
+    row.appendChild(bar);
+    timeline.appendChild(row);
+  });
+
+  // Auto-scroll to today
+  setTimeout(() => {
+    const wrap = document.getElementById('timelineWrap');
+    const timelineEl = document.getElementById('timeline');
+    const todayPx = (todayDay / totalDays) * timelineEl.offsetWidth;
+    wrap.scrollLeft = Math.max(0, todayPx - wrap.offsetWidth / 3);
+  }, 100);
+}
+
+loadData();
+</script>
+</body>
+</html>
