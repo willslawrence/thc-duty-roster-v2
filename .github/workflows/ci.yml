@@ -1,0 +1,57 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  inline-js-syntax:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate inline <script> blocks in HTML files
+        run: |
+          node -e '
+            const fs = require("fs");
+            const path = require("path");
+            function walk(dir) {
+              const out = [];
+              for (const e of fs.readdirSync(dir, { withFileTypes: true })) {
+                if (e.name.startsWith(".") || e.name === "node_modules") continue;
+                const full = path.join(dir, e.name);
+                if (e.isDirectory()) out.push(...walk(full));
+                else if (e.name.toLowerCase().endsWith(".html")) out.push(full);
+              }
+              return out;
+            }
+            const files = walk(".");
+            const tagRe = /<script(\s[^>]*)?>([\s\S]*?)<\/script>/gi;
+            let scanned = 0, errors = 0;
+            for (const file of files) {
+              const html = fs.readFileSync(file, "utf8");
+              let m, i = 0;
+              while ((m = tagRe.exec(html))) {
+                const attrs = m[1] || "";
+                const code  = m[2];
+                if (/\bsrc\s*=/i.test(attrs)) { i++; continue; }
+                const typeMatch = attrs.match(/\btype\s*=\s*["\x27]?([^"\x27\s>]+)/i);
+                if (typeMatch && !/javascript|module/i.test(typeMatch[1])) { i++; continue; }
+                if (typeMatch && /module/i.test(typeMatch[1])) { i++; continue; }
+                if (!code.trim()) { i++; continue; }
+                try {
+                  new Function(code);
+                  scanned++;
+                } catch (err) {
+                  console.error(`${file} script[${i}]: ${err.message}`);
+                  errors++;
+                }
+                i++;
+              }
+            }
+            console.log(`Validated ${scanned} inline <script> block(s) across ${files.length} HTML file(s)`);
+            if (errors) process.exit(1);
+          '
